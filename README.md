@@ -1,9 +1,11 @@
+See [CHANGE LOG](./CHANGELOG.md) for notable changes.
+
 #   yuan-dependencies-finder
 
 *yuan-dependencies-finder* is used to generate *dependencies* information of specified module under development.
 
 ```bash
-yuan-dependencies-finder [--input <path/to/module>] [--save] [--miss]
+yuan-dep-finder | yuan-dependencies-finder [--input <path/to/module>] [--save] [--miss]
 ```
 
 *   __--input__  

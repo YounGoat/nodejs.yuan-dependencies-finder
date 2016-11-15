@@ -1,26 +1,30 @@
 {
-    "name": "yuan-dependencies-finder",
-    "version": "0.0.1",
-    "description": "To analyse code in package and generate dependencies info automatically.",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-        "YUAN",
-        "CLI",
-        "dependencies"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/YounGoat/nodejs.yuan-dependencies-finder.git"
-    },
-    "author": "Triver YounGoat <youngoat@163.com> (http://youngoat.github.io/)",
-    "license": "MIT",
-    "dependencies": {
-        "colors": "^1.1.2",
-        "minimist": "^1.2.0",
-        "uglify-js": "^2.6.2",
-        "yuan": "^0.2.0"
-    }
+	"name": "yuan-dependencies-finder",
+	"version": "0.0.3",
+	"description": "To analyse code in package and generate dependencies info automatically.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"bin": {
+		"yuan-dependencies-finder": "./index.js",
+		"yuan-dep-finder": "./index.js"
+	},
+	"keywords": [
+		"YUAN",
+		"CLI",
+		"dependencies"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/YounGoat/nodejs.yuan-dependencies-finder.git"
+	},
+	"author": "Triver YounGoat <youngoat@163.com> (http://youngoat.github.io/)",
+	"license": "MIT",
+	"dependencies": {
+		"colors": "^1.1.2",
+		"minimist": "^1.2.0",
+		"uglify-js": "^2.6.2",
+		"yuan": "^0.2.0"
+	}
 }

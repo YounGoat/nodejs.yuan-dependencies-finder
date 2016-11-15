@@ -100,32 +100,50 @@ _logger.log(_allJs.length + ' javascript files found.');
 
 _logger.info('Finding required modules ...');
 var _modules = [];
+
+var _filter_module = function(name) {
+	if (!name) return;
+	if (typeof name != 'string') return;
+	if (path.isAbsolute(name)) return;
+	if (name.startsWith('.')) return;
+
+	// Ignore the subpath of module, only the scope (if exists) and module name remained.
+	var parts = name.split('/');
+	if (name.startsWith('@')) name = parts[0] + '/' + parts[1];
+	else name = parts[0];
+
+	_modules.push(name);
+}
+
 var _transformer = new UglifyJS.TreeTransformer(function(node, descend) {
     if (node instanceof UglifyJS.AST_Call && node.expression.name == 'require') {
         var name = node.args[0].value;
-
-        if (!name) return;
-        if (path.isAbsolute(name)) return;
-        if (name.startsWith('.')) return;
-
-        // Ignore the subpath of module, only the scope (if exists) and module name remained.
-        var parts = name.split('/');
-        if (name.startsWith('@')) name = parts[0] + '/' + parts[1];
-        else name = parts[0];
-
-        _modules.push(name);
+		_filter_module(name);
     }
 });
+
+var _reg_find = function(code) {
+	var re = /require\(['"]([^'"]+)['"]\)/g;
+	var matches = code.match(re);
+	if (matches) {
+		matches.forEach(function(s) {
+			/require\(['"]([^'"]+)['"]\)/.test(s);
+			_filter_module(RegExp.$1);
+		})
+	}
+};
+
 _allJs.forEach(function(pathname) {
     var m = _modules.length;
 
     var code = fs.readFileSync(pathname, 'utf8');
     try{
         var ast = UglifyJS.parse(code);
+		ast.transform(_transformer);
     } catch(ex) {
-        _logger.error('Failed to parse javascript code. ES2015 not supported now.');
+        _logger.warn('Failed to parse ' + pathname.substr(OPTIONS.input.length) + ', in replacement, RegExp will be used.');
+		_reg_find(code);
     }
-    ast.transform(_transformer);
 
     m = _modules.length - m;
     _logger.log(pathname.substr(OPTIONS.input.length) + ' ' + colors[ m ? 'green' : 'gray' ]('+' + m));
@@ -155,9 +173,6 @@ if (process.env.NODE_PATH) {
 }
 
 paths = paths.filter(function(item) { return item != ''; });
-// for (var i = 0; i < paths.length; i++) {
-//     paths[i] = _readlink(paths[i]);
-// }
 module.paths = paths;
 
 // STEP 2.
