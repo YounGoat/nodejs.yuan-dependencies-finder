@@ -1,6 +1,6 @@
 {
-    "name": "da",
-    "version": "0.1.1",
+    "name": "depa",
+    "version": "0.1.2",
     "description": "To analyse code in package and generate dependencies info automatically.",
     "main": "index.js",
     "scripts": {
