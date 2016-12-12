@@ -1,5 +1,5 @@
 {
-    "name": "yuan-dependencies-finder",
+    "name": "da",
     "version": "0.1.0",
     "description": "To analyse code in package and generate dependencies info automatically.",
     "main": "index.js",
