@@ -1,6 +1,6 @@
 {
     "name": "yuan-dependencies-finder",
-    "version": "0.0.4",
+    "version": "0.0.5-minal.0",
     "description": "To analyse code in package and generate dependencies info automatically.",
     "main": "index.js",
     "scripts": {
