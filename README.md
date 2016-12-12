@@ -1,11 +1,13 @@
 See [CHANGE LOG](./CHANGELOG.md) for notable changes.
 
-#   DA, Dependencies Assistant
+#   DEPA, DEPendencies Assistant
 
-*DA* is used to generate *dependencies* information of specified module under development.
+*depa* is used to generate *dependencies* information of specified module under development.
 
 ```bash
-da [--input <path/to/module>] [--save] [--miss]
+depa [--input <path/to/module>] [--save] [--miss]
+
+# Old command name yuan-dependencies-finder is still available.
 ```
 
 *   __--input__  
@@ -32,4 +34,4 @@ The standard output looks like this:
 
 ##	About
 
-Since 0.1.0, *yuan-dependencies-finder* is renamed to *DA*. While package installed, two commands named with both new package and old one will be installed.
+Since 0.1.0, *yuan-dependencies-finder* is renamed to *depa*. While package installed, two commands named with both new package and old one will be installed.
