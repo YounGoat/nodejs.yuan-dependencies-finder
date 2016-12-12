@@ -1,11 +1,11 @@
 See [CHANGE LOG](./CHANGELOG.md) for notable changes.
 
-#   yuan-dependencies-finder
+#   DA, Dependencies Assistant
 
-*yuan-dependencies-finder* is used to generate *dependencies* information of specified module under development.
+*DA* is used to generate *dependencies* information of specified module under development.
 
 ```bash
-yuan-dep-finder | yuan-dependencies-finder [--input <path/to/module>] [--save] [--miss]
+da [--input <path/to/module>] [--save] [--miss]
 ```
 
 *   __--input__  
@@ -29,3 +29,7 @@ The standard output looks like this:
     uglify-js : ^2.6.2
     yuan : ^0.2.0
 ```
+
+##	About
+
+Since 0.1.0, *yuan-dependencies-finder* is renamed to *DA*. While package installed, two commands named with both new package and old one will be installed.
