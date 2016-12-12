@@ -1,6 +1,6 @@
 {
     "name": "depa",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "To analyse code in package and generate dependencies info automatically.",
     "main": "index.js",
     "scripts": {
@@ -8,7 +8,7 @@
     },
     "bin": {
         "yuan-dependencies-finder": "./index.js",
-        "da": "./index.js"
+        "depa": "./index.js"
     },
     "keywords": [
         "YUAN",
