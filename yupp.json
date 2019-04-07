@@ -1,4 +1,4 @@
 {
-	"name": "yuan-dependencies-finder",
-	"alias": "depa"
+	"name": "needyou",
+	"alias": [ "depa", "yuan-dependencies-finder" ]
 }

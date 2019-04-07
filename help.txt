@@ -1,0 +1,17 @@
+
+NAME
+    needyou - Generate dependencies information of specified module under development.
+
+SYNOPSIS
+    needyou [--source <pathname>] [--save] [--miss]
+    
+ARGUMENTS 
+    --source <pathname>
+    Pathname of package to be analysed.
+
+    --save
+    Replace the "dependencies" property in package.json.
+
+    --miss
+    If unable to obtain version of modules required, 
+    use * (latest version) as replacement.

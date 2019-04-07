@@ -1,14 +1,15 @@
 {
-    "name": "depa",
-    "version": "0.1.3",
+    "name": "needyou",
+    "version": "0.2.0",
     "description": "To analyse code in package and generate dependencies info automatically.",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "mocha"
     },
     "bin": {
-        "yuan-dependencies-finder": "./index.js",
-        "depa": "./index.js"
+        "yuan-dependencies-finder": "./bin/needyou.js",
+        "depa": "./bin/needyou.js",
+        "needyou": "./bin/needyou.js"
     },
     "keywords": [
         "YUAN",
@@ -22,9 +23,11 @@
     "author": "Triver YounGoat <youngoat@163.com> (http://youngoat.github.io/)",
     "license": "MIT",
     "dependencies": {
-        "colors": "^1.1.2",
+        "colors": "^1.3.2",
+        "commandos": "^0.3.1",
         "minimist": "^1.2.0",
-        "uglify-js": "^2.6.2",
-        "yuan": "^0.2.0"
+        "noda": "^0.5.0",
+        "uglify-js": "^2.7.5",
+        "yuan": "^0.2.3"
     }
 }

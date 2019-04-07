@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 
+##  [1.0.0] - April 7th, 2019
+
+New name __needyou__ is used.
+
 ##	[0.1.1] - 2016-12
 
 Renamed to *depa*.
