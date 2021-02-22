@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 
-##  [1.0.0] - April 7th, 2019
+##	[0.2.2] - 2021-02-22
+
+识别无后缀名、带 Shebang 的 Node.js 文件。
+
+##	[0.2.1] - 2021-02-22
+
+调整日志格式，显示每个文件引用的包的清单。
+
+##  [0.2.0] - April 7th, 2019
 
 New name __needyou__ is used.
 

@@ -96,6 +96,12 @@ function needyou(OPTIONS) {
             else if (path.extname(pathname) == '.js') {
                 _allJs.push(pathname);
             }
+            else if (path.extname(pathname) == '') {
+                let content = fs.readFileSync(pathname, 'utf8');
+                if (content.startsWith('#!/usr/bin/env node')) {
+                    _allJs.push(pathname);
+                }
+            }
         });
     })(OPTIONS.input);
 
