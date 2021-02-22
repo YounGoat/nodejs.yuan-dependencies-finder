@@ -1,6 +1,6 @@
 {
     "name": "needyou",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "To analyse code in package and generate dependencies info automatically.",
     "main": "index.js",
     "scripts": {

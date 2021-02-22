@@ -152,7 +152,11 @@ function needyou(OPTIONS) {
         }
 
         m = _modules.length - m;
-        _logger.log(pathname.substr(OPTIONS.input.length) + ' ' + colors[ m ? 'green' : 'gray' ]('+' + m));
+        _logger.log(colors.cyan(pathname.substr(OPTIONS.input.length)) + ' ' + colors[ m ? 'green' : 'gray' ]('+' + m));
+
+        for (let i = _modules.length - m; i < _modules.length; i++) {
+            _logger.log('. ' + colors.blue(_modules[i]));
+        }
     });
 
     _modules = yuan.array.uniq(_modules.sort());
@@ -223,15 +227,15 @@ function needyou(OPTIONS) {
 
             if (_readlink(entrypath) == pathname) {
                 if (!fs.existsSync(pkgpath)) {
-                    var msg = colors.italic('package.json') + ' in ' + colors.italic(moduleName) + '\'s homedir not existing or not accessible: ' + os.EOL + pkgpath;
+                    var msg = colors.italic('package.json') + ' in ' + colors.blue(moduleName) + '\'s homedir not existing or not accessible: ' + os.EOL + pkgpath;
                     _on_miss(msg);
                 }
                 else if (!pkgjson) {
-                    var msg = colors.italic('package.json') + ' in ' + colors.italic(moduleName) + '\'s homedir is not valid JSON file:' + os.EOL + pkgpath;
+                    var msg = colors.italic('package.json') + ' in ' + colors.blue(moduleName) + '\'s homedir is not valid JSON file:' + os.EOL + pkgpath;
                     _on_miss(msg);
                 }
                 else if (!pkgjson.version) {
-                    var msg = colors.italic('package.json') + ' in ' + colors.italic(moduleName) + '\'s homedir contains no version info:' + os.EOL + pkgpath;
+                    var msg = colors.italic('package.json') + ' in ' + colors.blue(moduleName) + '\'s homedir contains no version info:' + os.EOL + pkgpath;
                     _on_miss(msg);
                     _dependencies[moduleName] = '*';
                 }
@@ -241,7 +245,7 @@ function needyou(OPTIONS) {
                 break;
             }
         }
-        _logger.log(colors.italic(moduleName) + ' : ' + colors.green(_dependencies[moduleName]));
+        _logger.log('. ' + colors.blue(moduleName) + ' : ' + colors.green(_dependencies[moduleName]));
     });
 
     // ---------------------------
