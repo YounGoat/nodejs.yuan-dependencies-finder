@@ -16,7 +16,7 @@ const MODULE_REQUIRE = 1
 
 const groups = [
     [
-        '--help REQUIRED',
+        '--help -h REQUIRED',
     ], [
         '--input --source [0] NOT NULL',
         '--miss NOT ASSIGNABLE',
@@ -34,7 +34,7 @@ const cmd = commandos.parse(process.argv.slice(1), {
 });
 
 if (cmd.help) {
-    console.log(noda.inRead('help.txt', 'utf8'));
+    commandos.man(noda.inRead('help.txt', 'utf8'));
     return;
 }
 

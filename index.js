@@ -5,9 +5,11 @@ var MODULE_REQUIRE
     , os = require('os')
     , path = require('path')
     , colors = require('colors')
+    , ignore = require('ignore')
     , minimist = require('minimist')
     , UglifyJS = require('uglify-js')
     , yuan = require('yuan')
+    , uniq = require('jinang/uniq')
     ;
 
 function needyou(OPTIONS) {
@@ -83,6 +85,20 @@ function needyou(OPTIONS) {
     _logger.info('Finding javascript files ...');
 
     var _allJs = [];
+    
+    var ig = null;
+    var npmignore = path.join(OPTIONS.input, '.npmignore');
+    if (fs.existsSync(npmignore)) {
+        var npmignores = fs.readFileSync(npmignore, 'utf8')
+            .split(/[\r\n]+/g)
+            .filter(line => {
+                if (/^\s*$/.test(line)) return false;
+                if (line.trim().startsWith('#')) return false;
+                return true;
+            });
+        ig = ignore().add(npmignores);
+    }
+
     (function foo(dirname) {
         var names = fs.readdirSync(dirname);
         names.forEach(function(name) {
@@ -90,6 +106,12 @@ function needyou(OPTIONS) {
             if (name == 'node_modules') return;
 
             var pathname = path.join(dirname, name);
+
+            if (ig) {
+                var relatived = path.relative(OPTIONS.input, pathname);
+                if (ig.ignores(relatived)) return;
+            }
+
             if (_isdir(pathname)) {
                 foo(pathname);
             }
@@ -253,6 +275,33 @@ function needyou(OPTIONS) {
         }
         _logger.log('. ' + colors.blue(moduleName) + ' : ' + colors.green(_dependencies[moduleName]));
     });
+
+    // ---------------------------
+    // If dependencies changed.
+
+    IF_CHANGED: {
+        var pathname = path.join(OPTIONS.input, 'package.json');
+        if (fs.existsSync(pathname)) {
+            _logger.info('Merged dependencies:');
+            var pkg = require(pathname);
+            var moduleNames = Object.keys(_dependencies).concat(Object.keys(pkg.dependencies || {}));
+            uniq(moduleNames.sort()).forEach(moduleName => {
+                if (pkg.dependencies[moduleName] == _dependencies[moduleName]) {
+                    moduleName;
+                }
+                else if (!_dependencies[moduleName]) {
+                    moduleName = colors.dim.strikethrough(moduleName);
+                }
+                else if (!pkg.dependencies[moduleName]) {
+                    moduleName = colors.red(moduleName);
+                }
+                else {
+                    moduleName = colors.yellow(moduleName) + ' previous ' + pkg.dependencies[moduleName];
+                }
+                _logger.log('. ' + moduleName);
+            });
+        }
+    }
 
     // ---------------------------
     // Save dependencies info to package.json of current module.
