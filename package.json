@@ -1,6 +1,6 @@
 {
     "name": "needyou",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "To analyse code in package and generate dependencies info automatically.",
     "main": "index.js",
     "scripts": {
@@ -26,7 +26,7 @@
         "colors": "^1.4.0",
         "commandos": "^0.9.0",
         "ignore": "^5.1.8",
-        "jinang": "^0.21.0",
+        "jinang": "^0.26.1",
         "minimist": "^1.2.5",
         "noda": "^0.5.0",
         "uglify-js": "^2.8.29",

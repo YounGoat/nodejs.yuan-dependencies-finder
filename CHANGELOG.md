@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 
+##	[0.2.4] - 2021-07-26
+
+*	升级依赖项 `jinang` 的版本。此前的版本缺少所需的 `uniq` 模块。
+
 ##	[0.2.3] - 2021-04-15
 
 *	Display colorful online manual.  
